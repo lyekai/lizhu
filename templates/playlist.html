@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>練習模式 - 詩詞吟誦遊戲</title>
+    <link rel="stylesheet" href="/static/playlist.css">
+</head>
+<body>
+    <!-- 回上頁按鈕 -->
+    <a class="back-button" href="/">⬅️ 回上頁</a>
+
+    <!-- 歌單 -->
+    <div class="playlist-container">
+        <!-- 蒹葭（可點擊） -->
+        <div class="song-item active" id="jianjia-link" role="button" tabindex="0">
+            蒹葭
+        </div>
+
+        <!-- 其餘項目（disabled 樣式但仍可觸發顯示提示）-->
+        <!--<div class="song-item disabled" id="look-link" role="button" tabindex="1">-->
+        <div class="song-item active" id="look-link" role="button" tabindex="1">
+            望海潮
+        </div>
+
+        <div class="song-item disabled">青玉案 · 元夕</div>
+        <div class="song-item disabled">春江花月夜</div>
+        <div class="song-item disabled">歲暮歸南山</div>
+    </div>
+
+    <!-- 敬請期待浮現框（預設隱藏） -->
+    <div id="coming-soon" aria-hidden="true">敬請期待</div>
+
+<script>
+    // 等 DOM 讀取完再綁定事件
+    document.addEventListener('DOMContentLoaded', () => {
+        // 蒹葭點擊導向
+        const jianjia = document.getElementById('jianjia-link');
+        jianjia.addEventListener('click', () => {
+            // 依你的後端路由改成正確位置
+            window.location.href = '/practice/jianjia';
+        });
+        // 支援鍵盤 Enter 也能啟動（可及訪問性）
+        jianjia.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+            window.location.href = '/practice/jianjia';
+            }
+        });
+        // 望海潮點擊導向
+        const look = document.getElementById('look-link');
+        look.addEventListener('click', () => {
+            window.location.href = '/practice/look';
+        });
+        look.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                window.location.href = '/practice/look';
+            }
+        });
+
+        // 綁定所有 disabled 項目的點擊顯示提示
+        const disabledItems = document.querySelectorAll('.song-item.disabled');
+        disabledItems.forEach(item => {
+            item.addEventListener('click', showComingSoon);
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') showComingSoon();
+            });
+            });
+        });
+
+        // 顯示提示框（1 秒）
+        let comingSoonTimer = null;
+        function showComingSoon() {
+            const notice = document.getElementById('coming-soon');
+            // 清理任何現有計時器，重新顯示一次
+            if (comingSoonTimer) {
+                clearTimeout(comingSoonTimer);
+                comingSoonTimer = null;
+            }
+            // 顯示
+            notice.setAttribute('aria-hidden', 'false');
+            notice.classList.add('show');
+
+            // 1 秒後隱藏
+            comingSoonTimer = setTimeout(() => {
+                notice.classList.remove('show');
+                notice.setAttribute('aria-hidden', 'true');
+                comingSoonTimer = null;
+            }, 1000);
+    }
+</script>
+</body>
+</html>
+

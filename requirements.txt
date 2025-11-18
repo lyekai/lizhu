@@ -1,0 +1,7 @@
+Flask
+librosa
+numpy
+pydub
+ffmpeg-python
+gunicorn
+waitress
