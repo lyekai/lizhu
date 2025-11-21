@@ -216,13 +216,14 @@ def evaluate_audio():
         print("⚠️ Error:", e)
         return jsonify({"error": str(e)}), 500
 
-# if __name__ == "__main__":
-#     from waitress import serve
-#     port = int(os.environ.get("PORT", 8080))
-#     serve(app, host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    from waitress import serve
+    port = int(os.environ.get("PORT", 8080))
+    serve(app, host="0.0.0.0", port=port)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
 
 
 
