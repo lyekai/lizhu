@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>武陵春 - 詩詞吟誦練習</title>
+  <link rel="stylesheet" href="/static/spring.css">
+</head>
+<body>
+    <div class="bg-layer"></div>
+    <!-- 回上頁按鈕 -->
+    <a href="/practice" class="back-button">⬅️ 回上頁</a>
+
+    <!-- 主內容 -->
+    <div class="reeds-container">
+        <h1>武陵春 · 春晚</h1>
+
+        <!-- 第一段歌詞 -->
+        <div class="lyrics-box">
+            <p>風住塵香花已盡</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn">▶️</button>
+                <input type="range" id="progressBar" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn" class="record-button">🎙️</button>
+                    <button id="playRecordBtn" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore">--</span></p>
+                <p>音準：<span id="pitchScore">--</span></p>
+                <p>總分：<span id="totalScore">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult" class="history-container">
+                    <p>穩定度：<span id="bestClarity">0</span></p>
+                    <p>音準：<span id="bestPitch">0</span></p>
+                    <p>總分：<span id="bestTotal">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio" src="/static/spring/spring-1.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第二段歌詞 -->
+        <div class="lyrics-box">
+            <p>日晚倦梳頭</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_2">▶️</button>
+                <input type="range" id="progressBar_2" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_2" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_2" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_2" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_2" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_2" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_2">--</span></p>
+                <p>音準：<span id="pitchScore_2">--</span></p>
+                <p>總分：<span id="totalScore_2">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_2" class="history-container">
+                    <p>穩定度：<span id="bestClarity_2">0</span></p>
+                    <p>音準：<span id="bestPitch_2">0</span></p>
+                    <p>總分：<span id="bestTotal_2">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_2" src="/static/spring/spring-2.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_2" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第三段歌詞 -->
+        <div class="lyrics-box">
+            <p>物是人非事事休</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_3">▶️</button>
+                <input type="range" id="progressBar_3" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_3" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_3" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_3" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_3" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_3" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_3">--</span></p>
+                <p>音準：<span id="pitchScore_3">--</span></p>
+                <p>總分：<span id="totalScore_3">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_3" class="history-container">
+                    <p>穩定度：<span id="bestClarity_3">0</span></p>
+                    <p>音準：<span id="bestPitch_3">0</span></p>
+                    <p>總分：<span id="bestTotal_3">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_3" src="/static/spring/spring-3.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_3" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第四段歌詞 -->
+        <div class="lyrics-box">
+            <p>欲語淚先流</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_4">▶️</button>
+                <input type="range" id="progressBar_4" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_4" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_4" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_4" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_4" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_4" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_4">--</span></p>
+                <p>音準：<span id="pitchScore_4">--</span></p>
+                <p>總分：<span id="totalScore_4">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_4" class="history-container">
+                    <p>穩定度：<span id="bestClarity_4">0</span></p>
+                    <p>音準：<span id="bestPitch_4">0</span></p>
+                    <p>總分：<span id="bestTotal_4">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_4" src="/static/spring/spring-4.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_4" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第五段歌詞 -->
+        <div class="lyrics-box">
+            <p>聞說雙溪春尚好</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_5">▶️</button>
+                <input type="range" id="progressBar_5" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_5" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_5" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_5" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_5" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_5" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_5">--</span></p>
+                <p>音準：<span id="pitchScore_5">--</span></p>
+                <p>總分：<span id="totalScore_5">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_5" class="history-container">
+                    <p>穩定度：<span id="bestClarity_5">0</span></p>
+                    <p>音準：<span id="bestPitch_5">0</span></p>
+                    <p>總分：<span id="bestTotal_5">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_5" src="/static/spring/spring-5.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_5" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第六段歌詞 -->
+        <div class="lyrics-box">
+            <p>也擬泛輕舟</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_6">▶️</button>
+                <input type="range" id="progressBar_6" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_6" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_6" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_6" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_6" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_6" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_6">--</span></p>
+                <p>音準：<span id="pitchScore_6">--</span></p>
+                <p>總分：<span id="totalScore_6">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_6" class="history-container">
+                    <p>穩定度：<span id="bestClarity_6">0</span></p>
+                    <p>音準：<span id="bestPitch_6">0</span></p>
+                    <p>總分：<span id="bestTotal_6">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_6" src="/static/spring/spring-6.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_6" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第七段歌詞 -->
+        <div class="lyrics-box">
+            <p>只恐雙溪舴艋舟</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_7">▶️</button>
+                <input type="range" id="progressBar_7" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_7" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_7" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_7" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_7" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_7" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_7">--</span></p>
+                <p>音準：<span id="pitchScore_7">--</span></p>
+                <p>總分：<span id="totalScore_7">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_7" class="history-container">
+                    <p>穩定度：<span id="bestClarity_7">0</span></p>
+                    <p>音準：<span id="bestPitch_7">0</span></p>
+                    <p>總分：<span id="bestTotal_7">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_7" src="/static/spring/spring-7.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_7" controls style="display:none;"></audio>
+        </div>
+
+        <!-- 第八段歌詞 -->
+        <div class="lyrics-box">
+            <p>載不動許多愁</p>
+            <!-- 原音檔播放區 -->
+            <div class="player-container">
+                <button class="play-button" id="playBtn_8">▶️</button>
+                <input type="range" id="progressBar_8" value="0" min="0" max="100" step="0.1">
+            </div>
+            <!-- 錄音控制區 -->
+            <div class="record-container" style="margin-top:20px;">
+                <div class="record-row">
+                    <button id="recordBtn_8" class="record-button">🎙️</button>
+                    <button id="playRecordBtn_8" class="record-button" style="display:none;">🔊</button>
+                    <input type="range" id="recordProgress_8" value="0" min="0" max="100" step="0.1" style="display:none;">
+                </div>
+                <button id="scoreBtn_8" class="score-button" style="display:none;">📊 評分</button>
+            </div>
+            <!-- 即時計分結果 -->
+            <div id="scoreResult_8" class="score-result" style="display:none; margin-top:25px;">
+                <p>穩定度：<span id="clarityScore_8">--</span></p>
+                <p>音準：<span id="pitchScore_8">--</span></p>
+                <p>總分：<span id="totalScore_8">--</span></p>
+            </div>
+            <!-- 歷史最高分 -->
+            <div class="history">
+                <span class="history-label">歷史最高</span>
+                <div id="historyResult_8" class="history-container">
+                    <p>穩定度：<span id="bestClarity_8">0</span></p>
+                    <p>音準：<span id="bestPitch_8">0</span></p>
+                    <p>總分：<span id="bestTotal_8">0</span></p>
+                </div>
+            </div>
+            <!-- 原始音檔 -->
+            <audio id="audio_8" src="/static/spring/spring-8.mp3"></audio>
+            <!-- 使用者錄音暫存 -->
+            <audio id="recordedAudio_8" controls style="display:none;"></audio>
+        </div>
+    </div>
+<script>
+    function initLyricsBox(prefix) {
+        const audio = document.getElementById(`audio${prefix}`);
+        const playBtn = document.getElementById(`playBtn${prefix}`);
+        const progressBar = document.getElementById(`progressBar${prefix}`);
+        const recordBtn = document.getElementById(`recordBtn${prefix}`);
+        const playRecordBtn = document.getElementById(`playRecordBtn${prefix}`);
+        const recordProgress = document.getElementById(`recordProgress${prefix}`);
+        const recordedAudio = document.getElementById(`recordedAudio${prefix}`);
+        const scoreBtn = document.getElementById(`scoreBtn${prefix}`);
+        const scoreResult = document.getElementById(`scoreResult${prefix}`);
+
+        const bestClarity = document.getElementById(`bestClarity${prefix}`);
+        const bestPitch = document.getElementById(`bestPitch${prefix}`);
+        const bestTotal = document.getElementById(`bestTotal${prefix}`);
+
+        // 加上歌曲 nian 作為命名空間
+        bestClarity.textContent = localStorage.getItem(`spring_bestClarity${prefix}`) || 0;
+        bestPitch.textContent = localStorage.getItem(`spring_bestPitch${prefix}`) || 0;
+        bestTotal.textContent = localStorage.getItem(`spring_bestTotal${prefix}`) || 0;
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        playBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = "⏸️";
+            } else {
+                audio.pause();
+                playBtn.textContent = "▶️";
+            }
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
+        });
+
+        progressBar.addEventListener("input", () => {
+            audio.currentTime = (progressBar.value / 100) * audio.duration;
+        });
+
+        audio.addEventListener("ended", () => {
+            playBtn.textContent = "▶️";
+            progressBar.value = 0;
+        });
+
+        // 錄音
+        recordBtn.addEventListener("click", async () => {
+            if (!mediaRecorder || mediaRecorder.state === "inactive") {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(audioChunks, { type: "audio/webm" });
+                        recordedAudio.src = URL.createObjectURL(blob);
+
+                        playRecordBtn.style.display = "inline-block";
+                        scoreBtn.style.display = "inline-block";
+                    };
+                    mediaRecorder.start();
+                    recordBtn.textContent = "⏹️";
+                } catch (e) {
+                    alert("無法啟用麥克風");
+                }
+            } else {
+                mediaRecorder.stop();
+                recordBtn.textContent = "🎙️";
+            }
+        });
+
+        playRecordBtn.addEventListener("click", () => {
+            recordProgress.style.display = "inline-block";
+            recordedAudio.play();
+            recordedAudio.addEventListener("timeupdate", () => {
+                recordProgress.value = (recordedAudio.currentTime / recordedAudio.duration) * 100;
+            });
+        });
+
+        // 評分
+        scoreBtn.addEventListener("click", async () => {
+            scoreBtn.disabled = true;
+            scoreBtn.textContent = "⏳ 分析中...";
+
+            const blob = await fetch(recordedAudio.src).then(r => r.blob());
+            const formData = new FormData();
+            formData.append("audio", blob, "user_recording.webm");
+
+            // 必須改成正確的 song = nian
+            formData.append("song", "spring");
+
+            // nian 只有第一段（你目前 HTML 只有一段）
+            formData.append("segment", "1");
+
+            try {
+                const res = await fetch("/evaluate_audio", { method: "POST", body: formData });
+                const data = await res.json();
+
+                scoreResult.style.display = "flex";
+                document.getElementById(`clarityScore${prefix}`).textContent = data.stability;
+                document.getElementById(`pitchScore${prefix}`).textContent = data.pitch;
+                document.getElementById(`totalScore${prefix}`).textContent = data.total;
+
+                updateBestScores(prefix, data.stability, data.pitch, data.total);
+            } finally {
+                scoreBtn.disabled = false;
+                scoreBtn.textContent = "📊 評分";
+            }
+        });
+    }
+
+    function updateBestScores(prefix, stability, pitch, total) {
+
+        let bestC = parseFloat(localStorage.getItem(`spring_bestClarity${prefix}`)) || 0;
+        let bestP = parseFloat(localStorage.getItem(`spring_bestPitch${prefix}`)) || 0;
+        let bestT = parseFloat(localStorage.getItem(`spring_bestTotal${prefix}`)) || 0;
+
+        if (stability > bestC) {
+            localStorage.setItem(`spring_bestClarity${prefix}`, stability);
+            bestC = stability;
+        }
+        if (pitch > bestP) {
+            localStorage.setItem(`spring_bestPitch${prefix}`, pitch);
+            bestP = pitch;
+        }
+        if (total > bestT) {
+            localStorage.setItem(`spring_bestTotal${prefix}`, total);
+            bestT = total;
+        }
+
+        document.getElementById(`bestClarity${prefix}`).textContent = bestC;
+        document.getElementById(`bestPitch${prefix}`).textContent = bestP;
+        document.getElementById(`bestTotal${prefix}`).textContent = bestT;
+    }
+
+    // 你目前只有 1 段，所以只需要 init 一次
+    initLyricsBox("");
+    initLyricsBox("_2");
+    initLyricsBox("_3");
+    initLyricsBox("_4");
+    initLyricsBox("_5");
+    initLyricsBox("_6");
+    initLyricsBox("_7");
+    initLyricsBox("_8");
+</script>
+
+</body>
+</html>
+
