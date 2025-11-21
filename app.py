@@ -75,7 +75,7 @@ SONGS = {
             "15": "static/nian/nian-15.mp3",
         }
     },
-    "nian": {
+    "spring": {
         "title": "武陵春",
         "segments": {
             "1": "static/spring/spring-1.mp3",
@@ -223,6 +223,7 @@ if __name__ == "__main__":
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
+
 
 
 
